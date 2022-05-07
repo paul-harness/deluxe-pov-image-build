@@ -20,6 +20,7 @@ RUN apk update && \
 # 拷贝本地的 geckodriver
 COPY ./geckodriver /usr/local/bin/
 RUN chmod a+x /usr/local/bin/geckodriver
+RUN apk add git
 ADD script.sh /bin/
 RUN chmod +x /bin/script.sh
 RUN apk -Uuv add curl ca-certificates
