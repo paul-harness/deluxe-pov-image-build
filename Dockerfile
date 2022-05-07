@@ -1,35 +1,17 @@
-FROM python:3.9
+FROM alpine:3.4
+MAINTAINER leafney "babycoolzx@126.com"
+
+# 更新软件源
+RUN echo "http://dl-4.alpinelinux.org/alpine/v3.4/main" >> /etc/apk/repositories && \
+	echo "http://dl-4.alpinelinux.org/alpine/v3.4/community" >> /etc/apk/repositories
+
+
+RUN apk update && \
+	apk add python py-pip curl unzip libexif udev chromium chromium-chromedriver xvfb && \
+	pip install selenium && \
+	pip install pyvirtualdisplay
  
-ENV DEBIAN_FRONTEND noninteractive
-ENV GECKODRIVER_VER v0.29.0
-ENV FIREFOX_VER 87.0
- 
-RUN set -x \
-   && apt update \
-   && apt upgrade -y \
-   && apt install -y \
-       firefox-esr
-RUN pip install requests
-RUN pip install selenium
- 
-# Add latest FireFox
-RUN set -x \
-   && apt install -y \
-       libx11-xcb1 \
-       libdbus-glib-1-2 \
-   && curl -sSLO https://download-installer.cdn.mozilla.net/pub/firefox/releases/${FIREFOX_VER}/linux-x86_64/en-US/firefox-${FIREFOX_VER}.tar.bz2 \
-   && tar -jxf firefox-* \
-   && mv firefox /opt/ \
-   && chmod 755 /opt/firefox \
-   && chmod 755 /opt/firefox/firefox
-  
-# Add geckodriver
-RUN set -x \
-   && curl -sSLO https://github.com/mozilla/geckodriver/releases/download/${GECKODRIVER_VER}/geckodriver-${GECKODRIVER_VER}-linux64.tar.gz \
-   && tar zxf geckodriver-*.tar.gz \
-   && mv geckodriver /usr/bin/
- 
-RUN apt install -y git
+RUN apk add git
 ADD script.sh /bin/
 RUN chmod +x /bin/script.sh
 ENTRYPOINT /bin/script.sh
