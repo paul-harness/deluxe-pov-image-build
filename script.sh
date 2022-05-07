@@ -1,7 +1,7 @@
-echo "Username:" ${PLUGIN_USERNAME}
-echo "Password:" ${PLUGIN_PASSWORD}
-echo "Connection String:" ${PLUGIN_CONNECTIONSTRING}
-echo "Changelog Path:" ${PLUGIN_CHANGELOGPATH}
-echo "Liquidbase Command:" ${PLUGIN_LIQUIDBASECOMMAND}
-echo "Repo:" ${PLUGIN_REPO}
-echo "Variables Passed to Liquidbase API SUCCESSFULLY!"
+echo "URL to search:" ${PLUGIN_URL}
+echo "Search Term:" ${PLUGIN_SEARCHTERM}
+
+git clone https://github.com/paul-harness/simple-selenium-project.git
+cd simple-selenium-project
+python3 paul-selenium.py > output.txt
+cat output.txt
