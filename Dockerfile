@@ -1,11 +1,8 @@
-FROM eamonwoortman/alpine-python-curl-zip
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
+FROM python:alpine3.9
 RUN apk update
-RUN apk add git
-RUN pip install selenium
-RUN apk add chromium-chromedriver
-RUN apk add chromium
+RUN apk add firefox-esr
+RUN apk add xvfb
+RUN pip install -r requirements.txt
 ADD script.sh /bin/
 RUN chmod +x /bin/script.sh
 RUN apk -Uuv add curl ca-certificates
