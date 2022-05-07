@@ -1,6 +1,7 @@
 FROM python:alpine3.9
 RUN apk update
 RUN apk add firefox-esr
+RUN apk add git
 RUN apk add xvfb
 RUN pip install selenium==3.11
 RUN pip install pyvirtualdisplay==0.2.1
