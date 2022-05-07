@@ -29,8 +29,7 @@ RUN set -x \
    && tar zxf geckodriver-*.tar.gz \
    && mv geckodriver /usr/bin/
  
-RUN apk add git
+RUN apt install -y git
 ADD script.sh /bin/
 RUN chmod +x /bin/script.sh
-RUN apk -Uuv add curl ca-certificates
 ENTRYPOINT /bin/script.sh
