@@ -1,15 +1,13 @@
-FROM alpine:3.4
-MAINTAINER leafney "babycoolzx@126.com"
+FROM python:3.9-alpine
 
-# 更新软件源
-RUN echo "http://dl-4.alpinelinux.org/alpine/v3.4/main" >> /etc/apk/repositories && \
-	echo "http://dl-4.alpinelinux.org/alpine/v3.4/community" >> /etc/apk/repositories
+# update apk repo
+RUN echo "http://dl-4.alpinelinux.org/alpine/v3.14/main" >> /etc/apk/repositories && \
+    echo "http://dl-4.alpinelinux.org/alpine/v3.14/community" >> /etc/apk/repositories
 
-
-RUN apk update && \
-	apk add python py-pip curl unzip libexif udev chromium chromium-chromedriver xvfb && \
-	pip install selenium && \
-	pip install pyvirtualdisplay
+# install chromedriver
+RUN apk update
+RUN apk add chromium chromium-chromedriver
+RUN apk add selenium
 
  
 RUN apk add git
