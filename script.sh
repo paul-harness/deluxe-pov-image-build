@@ -3,5 +3,5 @@ echo "Search Term:" ${PLUGIN_SEARCHTERM}
 
 git clone https://github.com/paul-harness/simple-selenium-project.git
 cd simple-selenium-project
-python paul-selenium.py > output.txt
+python3 paul-selenium.py > output.txt
 cat output.txt
