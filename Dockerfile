@@ -29,11 +29,6 @@ RUN set -x \
    && tar zxf geckodriver-*.tar.gz \
    && mv geckodriver /usr/bin/
  
-COPY ./app /app
- 
-WORKDIR /app
- 
-CMD python ./main.py
 RUN apk add git
 ADD script.sh /bin/
 RUN chmod +x /bin/script.sh
