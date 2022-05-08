@@ -11,7 +11,7 @@ RUN pip install selenium
 ADD chromedriver .
 RUN chmod +x chromedriver
 
-RUN apk add git
+RUN apt install -y git
 ADD script.sh /bin/
 RUN chmod +x /bin/script.sh
 ENTRYPOINT /bin/script.sh
