@@ -1,18 +1,15 @@
-FROM python:3.9-alpine
+FROM python:3.6.8-stretch
 
-# update apk repo
-RUN echo "http://dl-4.alpinelinux.org/alpine/v3.14/main" >> /etc/apk/repositories && \
-    echo "http://dl-4.alpinelinux.org/alpine/v3.14/community" >> /etc/apk/repositories
+RUN apt update && apt install -y gdebi-core libnss3 libgconf-2-4
+ADD google-chrome-stable_current_amd64.deb .
+RUN gdebi -n google-chrome-stable_current_amd64.deb
 
-# install chromedriver
-RUN apk update
-RUN apk add chromium chromium-chromedriver
-
-# upgrade pip
-RUN pip install --upgrade pip
-
-# install selenium
+WORKDIR /app
+ADD requirements.txt .
 RUN pip install selenium
+
+ADD chromedriver .
+RUN chmod +x chromedriver
 
 RUN apk add git
 ADD script.sh /bin/
