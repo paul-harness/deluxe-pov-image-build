@@ -11,6 +11,8 @@ RUN apt update -y && apt-get install -y \
     libpcre3 \
     libpcre3-dev && \
     pip install pip --upgrade
+    
+RUN pip install selenium
 
 # create unprivileged user
 RUN adduser --disabled-password --gecos '' myuser  
