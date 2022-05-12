@@ -7,7 +7,6 @@ RUN apt install nodejs npm -y
 
 # install .NET SDK
 
-
 RUN apt install -y apt-transport-https
 RUN apt install -y dotnet-sdk-6.0
 
